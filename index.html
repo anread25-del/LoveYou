@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Для тебя</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #ffffff; /* Белый фон */
+            overflow: hidden;
+            font-family: 'Georgia', serif;
+        }
+
+        .container {
+            text-align: center;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* КРАСИВАЯ БОЛЬШАЯ РОЗА */
+        .rose {
+            position: relative;
+            width: 150px;
+            height: 150px;
+            margin: 0 auto;
+            animation: sway 4s ease-in-out infinite;
+        }
+
+        .petal {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 80px;
+            height: 80px;
+            background: #e63946;
+            border-radius: 50% 50% 10% 50%;
+            transform-origin: bottom center;
+            box-shadow: inset 5px 5px 20px rgba(0,0,0,0.2);
+            border: 1px solid #c1121f;
+        }
+
+        /* Расположение лепестков розы */
+        .petal:nth-child(1) { transform: translateX(-50%) rotate(0deg); }
+        .petal:nth-child(2) { transform: translateX(-50%) rotate(72deg); }
+        .petal:nth-child(3) { transform: translateX(-50%) rotate(144deg); }
+        .petal:nth-child(4) { transform: translateX(-50%) rotate(216deg); }
+        .petal:nth-child(5) { transform: translateX(-50%) rotate(288deg); }
+        .petal:nth-child(6) { width: 60px; height: 60px; top: 10px; transform: translateX(-50%) rotate(45deg); background: #f94144; }
+        
+        .stem {
+            width: 8px;
+            height: 150px;
+            background: #2d6a4f;
+            margin: -20px auto 0;
+            border-radius: 4px;
+            position: relative;
+        }
+
+        .leaf {
+            position: absolute;
+            width: 40px;
+            height: 20px;
+            background: #2d6a4f;
+            border-radius: 20px 0;
+            top: 40px;
+            left: 8px;
+        }
+
+        @keyframes sway {
+            0%, 100% { transform: rotate(-3deg); }
+            50% { transform: rotate(3deg); }
+        }
+
+        /* НАДПИСЬ */
+        h1 {
+            color: #4a4a4a;
+            font-size: 28px;
+            margin-top: 30px;
+            font-weight: 300;
+        }
+
+        .name {
+            color: #e63946;
+            font-weight: bold;
+            display: block;
+            font-size: 38px;
+            margin-top: 10px;
+            text-shadow: 0 0 10px rgba(230, 57, 70, 0.2);
+        }
+
+        /* ЛЕТАЮЩИЕ СЕРДЕЧКИ */
+        .heart {
+            position: absolute;
+            color: #ff4d6d;
+            font-size: 20px;
+            user-select: none;
+            pointer-events: none;
+            animation: fly linear forwards;
+            z-index: 1;
+        }
+
+        @keyframes fly {
+            0% { transform: translateY(0) scale(1); opacity: 1; }
+            100% { transform: translateY(-110vh) scale(1.5); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="rose">
+            <div class="petal"></div>
+            <div class="petal"></div>
+            <div class="petal"></div>
+            <div class="petal"></div>
+            <div class="petal"></div>
+            <div class="petal"></div>
+        </div>
+        <div class="stem">
+            <div class="leaf"></div>
+        </div>
+
+        <h1>Это цветок для <span id="girlName" class="name">ИМЯ</span></h1>
+    </div>
+
+    <script>
+        // --- ПРОСТО ЗАМЕНИ ТЕКСТ В КАВЫЧКАХ НА ИМЯ ---
+        const finalName = "Роза"; 
+        // ---------------------------------------------
+
+        document.getElementById('girlName').innerText = finalName;
+
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.innerHTML = '❤️';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.bottom = '-5%';
+            heart.style.animationDuration = Math.random() * 2 + 3 + 's';
+            heart.style.opacity = Math.random() * 0.5 + 0.5;
+            
+            document.body.appendChild(heart);
+            setTimeout(() => heart.remove(), 5000);
+        }
+
+        setInterval(createHeart, 350);
+    </script>
+</body>
+  </html>
+                                                                 
